@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Anime Character API",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
