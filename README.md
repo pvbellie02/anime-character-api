@@ -96,7 +96,51 @@ Returns all characters whose name contains the search string.
 
 **Example:** `/api/characters/search?name=Goku`
 
----
+
+# Anime Character API — Assignment 4 (MVC Feature Branch)
+
+A full-stack Spring Boot MVC web application for managing anime characters,
+built on top of the Assignment 3 REST API.
+
+## How to Run
+
+1. Make sure your Neon PostgreSQL database is running (credentials in application.properties).
+2. In VS Code terminal run: ./mvnw spring-boot:run
+3. Open browser to http://localhost:8080 — redirects to the character list.
+
+## MVC Routes (browser-facing)
+
+| Method | URL                          | What it does                       |
+|--------|------------------------------|------------------------------------|
+| GET    | /characters                  | List all characters                |
+| GET    | /characters/{id}             | View one character's details       |
+| GET    | /characters/new              | Show the create form               |
+| POST   | /characters/create           | Submit new character               |
+| GET    | /characters/edit/{id}        | Show pre-filled update form        |
+| POST   | /characters/update/{id}      | Submit updated character           |
+| GET    | /characters/delete/{id}      | Delete character, redirect to list |
+| GET    | /characters/search?name=X    | Search characters by name          |
+| GET    | /characters/anime/{anime}    | Filter by anime series             |
+| GET    | /characters/about            | About page                         |
+
+## REST API Routes (JSON — Assignment 3, still available)
+
+| Method | URL                          | What it does                  |
+|--------|------------------------------|-------------------------------|
+| GET    | /api/characters/             | Get all characters (JSON)     |
+| GET    | /api/characters/{id}         | Get one character by ID       |
+| POST   | /api/characters/             | Create character (JSON body)  |
+| PUT    | /api/characters/{id}         | Update character (JSON body)  |
+| DELETE | /api/characters/{id}         | Delete character              |
+| GET    | /api/characters/anime/{a}    | Filter by anime (JSON)        |
+| GET    | /api/characters/search?name  | Search by name (JSON)         |
 
 ## Demo Video
-[Click here to watch the demo](<https://uncg-my.sharepoint.com/:u:/g/personal/pvbellie_uncg_edu/IQDFG9LXzpFbR4fr2RvXfbm7AfdlPCaV3x76BbA5oYEErh8?email=SENTINI%40uncg.edu&e=OpTWZk>)
+
+[Add your OneDrive link here]
+
+## Tech Stack
+- Java 21, Spring Boot 3.2, Spring Data JPA
+- PostgreSQL (Neon)
+- FreeMarker server-side templates
+- Vanilla CSS (dark anime theme)
