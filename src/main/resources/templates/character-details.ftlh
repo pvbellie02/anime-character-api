@@ -1,75 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="/css/style.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <title>${title}</title>
+  <title>${title} | Anime Gallery</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
-
 <body>
-  <!-- Nav Bar -->
-  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #16213e;">
-    <a class="navbar-brand" href="/characters" style="margin: 10px; color: #e94560; font-weight: bold;">
-      &#9876; AnimeCharacterDB
-    </a>
-    <ul class="nav justify-content-end">
-      <li class="nav-item">
-        <a class="nav-link active" href="/characters">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/characters/add">Add Character</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/characters/about">About</a>
-      </li>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <h2 class="logo">Anime Gallery</h2>
+    <ul class="nav-links">
+      <li><a href="/characters">Home</a></li>
+      <li><a href="/characters/about">About</a></li>
+      <li><a href="/characters/add">Add a Character</a></li>
     </ul>
   </nav>
 
-  <div class="container" style="margin-top: 15px;">
-    <h1>${title} <span style="float:right"><a href="/characters" class="btn btn-primary">Go Back</a></span></h1>
+  <!-- Main Content -->
+  <main class="container">
+    <h1>${character.name}</h1>
 
-    <!-- Character Details Card -->
-    <div class="card">
-      <h5 class="card-header">${character.name}</h5>
-      <div class="card-body">
-        <h5 class="card-title">ID: ${character.characterId?c}</h5>
-        <p class="card-text">Name: ${character.name}</p>
-        <p class="card-text">
-          Anime: <a href="/characters/anime/${character.anime!""}" style="color:#e94560">${character.anime!""}</a>
-        </p>
-        <p class="card-text">Role: ${character.role!""}</p>
-        <p class="card-text">Species: ${character.species!""}</p>
-        <p class="card-text">Power Level: ${character.powerLevel}</p>
-        <p class="card-text">Description: ${character.description!""}</p>
-      </div>
+    <div class="details-card">
+
+      <h2>Details</h2>
+      <p><strong>ID:</strong> ${character.characterId?c}</p>
+      <p><strong>Anime:</strong>
+        <a href="/characters/anime/${character.anime!""}" style="color:#ff4757">${character.anime!""}</a>
+      </p>
+      <p><strong>Role:</strong> ${character.role!""}</p>
+      <p><strong>Species:</strong> ${character.species!""}</p>
+      <p><strong>Power Level:</strong> ${character.powerLevel}</p>
+
+      <h2>Description</h2>
+      <p>${character.description!""}</p>
+
     </div>
 
-    <!-- Edit Character Form (on same page, like the demo) -->
-    <div class="alert alert-primary" role="alert" style="margin-top: 10px;">Edit Character</div>
-    <form id="edit-character" action="/characters/update/${character.characterId?c}" method="post">
-      <input type="text"   id="characterId"  name="characterId"  value="${character.characterId?c}" readonly />
-      <input type="text"   id="name"         name="name"         value="${character.name}"           placeholder="Name" />
-      <input type="text"   id="anime"        name="anime"        value="${character.anime!""}"       placeholder="Anime" />
-      <input type="text"   id="role"         name="role"         value="${character.role!""}"         placeholder="Role" />
-      <input type="text"   id="species"      name="species"      value="${character.species!""}"     placeholder="Species" />
-      <input type="number" id="powerLevel"   name="powerLevel"   value="${character.powerLevel}"     placeholder="Power Level" step="0.1" /><br>
-      <textarea id="description" name="description" placeholder="Description" rows="3" style="width:80%; margin:5px;">${character.description!""}</textarea><br>
-      <button type="submit" class="btn btn-primary">Save Changes</button>
+    <!-- Edit Character Form -->
+    <h2 style="margin-top: 30px;">Edit Character</h2>
+    <form class="character-form" action="/characters/update/${character.characterId?c}" method="post">
+      <input type="hidden" name="characterId" value="${character.characterId?c}">
+
+      <label for="name">Character Name:</label>
+      <input type="text" id="name" name="name" value="${character.name}" required>
+
+      <label for="anime">Anime:</label>
+      <input type="text" id="anime" name="anime" value="${character.anime!""}">
+
+      <label for="role">Role:</label>
+      <input type="text" id="role" name="role" value="${character.role!""}">
+
+      <label for="species">Species:</label>
+      <input type="text" id="species" name="species" value="${character.species!""}">
+
+      <label for="powerLevel">Power Level:</label>
+      <input type="number" id="powerLevel" name="powerLevel" value="${character.powerLevel}" step="0.1">
+
+      <label for="description">Description:</label>
+      <textarea id="description" name="description">${character.description!""}</textarea>
+
+      <button type="submit">Save Changes</button>
     </form>
 
-    <!-- Delete Character -->
-    <div class="alert alert-danger" role="alert">
-      Delete Character
-      <a style="float: right;" href="/characters/delete/${character.characterId?c}"
+    <!-- Delete Section -->
+    <div class="delete-section">
+      <span>Delete this character permanently</span>
+      <a href="/characters/delete/${character.characterId?c}"
          class="btn btn-danger"
          onclick="return confirm('Are you sure you want to delete ${character.name}?')">Delete</a>
     </div>
-  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <div style="margin-top: 20px;">
+      <a href="/characters" class="btn btn-secondary">← Back to Gallery</a>
+    </div>
+
+  </main>
+
 </body>
-
 </html>
