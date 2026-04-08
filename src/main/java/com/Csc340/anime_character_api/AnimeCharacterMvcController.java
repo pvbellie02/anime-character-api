@@ -1,4 +1,4 @@
-package main.java.com.Csc340.anime_character_api;
+package com.Csc340.anime_character_api;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
